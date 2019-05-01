@@ -39,4 +39,22 @@
 - pullもしくはfetch
   
   共有リポジトリ上の変更点（commit）をローカルリポジトリへ取り込む操作
+  Pullは、commitを取り込む時に作業コピーに直接変更内容を反映
+  fetchは、共有リポジトリのcommitの内容をローカルリポジトリへ取り込むだけで、ファイルへの反映は行わない
+  fetchは変更内容を手元で確認してからcommitを取り込むことができる
+
+- 競合またはコンフリクト
+  
+  自動で変更内容をmergeできない状態
+
+# よく使うコマンド
+
+##  git push origin master
+
+originリポジトリ（clone元のリポジトリ）へmasterブランチ（Gitで利用するデフォルトのブランチ）をpushする
+
+## git pull --rebase
+
+pullの実行
+
 

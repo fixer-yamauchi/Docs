@@ -389,3 +389,167 @@ Bob <-]
 Bob x<-]
 @enduml
 
+@startuml
+
+participant "Famous Bob" as Bob << Generated >>
+participant Alice << (C,#ADD1B2) Testable >>
+
+Bob ->  Alice: First message
+
+@enduml
+
+@startuml
+skinparam Guillemet false
+participant "Famous Bob" as Bob << Generated >>
+participant Alice << (C,#ADD1B2) Testable >>
+
+Bob -> Alice: First message
+@enduml
+
+@startuml
+participant Bob << (C,#ADD1B2) >>
+participant Alice << (C,#ADD1B2) >>
+
+Bob -> Alice: First message
+@enduml
+
+@startuml
+title __Simple__ **communication** example
+
+Alice -> Bob: Authentication Request
+Bob -> Alice: Authentication Response
+@enduml
+
+@startuml
+title __Simple__ **communication** example\non several lines
+Alice -> Bob: Authentication Request
+Bob -> Alice: Authentication Response
+
+@enduml
+
+@startuml
+title
+    <u>Simple</u> communication example
+    on <i>several</i> lines and using <font color=red>html</font>
+    This is hosted by <img:sorceforge.jpg>
+end title
+
+Alice -> Bob: Authentication Request
+Bob -> Alice: Authentication Response
+@enduml
+
+@startuml
+box "Internal Service" #LightBlue
+participant Bob
+participant Alice
+end box
+participant Other
+
+Bob -> Alice : hello
+Alice -> Other : hello
+@enduml
+
+@startuml
+hide footbox
+title Footer removed
+
+Alice -> Bob : Authentication Request
+Bob -> Alice : Authentication Response
+@enduml
+
+@startuml
+skinparam SequenceArrowThickness 2
+skinparam RoundCorner 20
+skinparam MaxMessageSize 60
+skinparam SequenceParticipant underline
+
+actor User
+participant "First Class" as A
+participant "Second Class" as B
+participant "Last Class" as C
+
+User -> A: DoWork
+activate A
+
+A -> B: Create Request
+activate B
+
+B -> C: DoWork
+activate C
+C --> B: WorkDone
+destroy C
+
+B --> A: Request Created
+deactivate B
+
+A --> User: Done
+deactivate A
+
+@enduml
+
+@startuml
+skinparam BackgroundColor #EEEBDC
+skinparam Handwritten true
+
+skinparam sequence {
+    ArrowColor DeepSkyBlue
+    ActorBorderColor DeepSkyBlue
+    LifeLineBorderColor blue
+    LifeLineBackgroundColor #A9DCDF
+
+    ParticipantBorderColor DeepSkyBlue
+    ParticipantBackgroundColor DodgerBlue
+    ParticipantFontName Impact
+    ParticipantFontSize 17
+    ParticipantFontColor #A9DCDF
+
+    ActorBackgroundColor aqua
+    ActorFontColor DeepSkyBlue
+    ActorFontSize 17
+    ActorFontSize Aapex
+}
+
+actor User
+participant "First Class" as A
+participant "Second Class" as B
+participant "Last Class" as C
+
+User -> A: DoWork
+activate A
+
+A -> B: Create Request
+activate B
+
+B -> C: DoWork
+activate C
+C --> B: WorkDone
+destroy C
+
+B --> A: Request Created
+deactivate B
+
+A --> User: Done
+deactivate A
+
+@enduml
+
+@startuml
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+
+box "Foo1"
+participant Alice1
+participant Alice2
+end box
+
+box "Foo2"
+participant Bob1
+participant Bob2
+end box
+
+Alice1 -> Bob1: hello
+Alice1 -> Out: out
+@enduml
+
+ユースケース図
+

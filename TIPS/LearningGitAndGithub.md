@@ -47,6 +47,10 @@
   
   自動で変更内容をmergeできない状態
 
+- ブランチ
+  
+  リポジトリ上のあるバージョンから分岐してファイルを管理する枝（ブランチ）のこと
+
 # よく使うコマンド
 
 ##  git push origin master
@@ -56,5 +60,10 @@ originリポジトリ（clone元のリポジトリ）へmasterブランチ（Git
 ## git pull --rebase
 
 pullの実行
+
+## git branch
+
+ブランチの確認
+
 
 

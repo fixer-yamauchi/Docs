@@ -1773,4 +1773,642 @@ skinparam node {
 skinparam DatabaseBackgroundColor aqua
 @enduml
 
-ステート図
+@startuml
+[*] --> State1
+State1 --> [*]
+State1 : this is a string
+State1 : this is another string
+
+State1 -> State2
+State2 --> [*]
+@enduml
+
+@startuml
+hide empty description
+[*] --> State1
+State1 --> [*]
+State1 : this is a string
+State1 : this is another string
+
+State1 -> State2
+State2 --> [*]
+@enduml
+
+@startuml
+scale 350 width
+[*] --> NotShooting
+
+state NotShooting {
+    [*] --> Idle
+    Idle --> Configuring : EvConfig
+    Configuring --> Idle : EvConfig
+}
+
+state Configuring {
+    [*] --> NewValueSelection
+    NewValueSelection --> NewValuePreview : evNewValue
+    NewValuePreview --> NewValueSelection : EvNewValueRejected
+    NewValuePreview --> NewValueSelection : EvNewValueSaved
+
+    state NewValuePreview {
+        State1 -> State2
+    }
+}
+@enduml
+
+@startuml
+scale 600 width
+[*] -> State1
+State1 --> State2 : Secceeded
+State1 --> [*] : Aborted
+State2 --> State3 : Succeeded
+State2 --> [*] : Aborted
+state State3 {
+    state "Accumulate Enough\nLong State Name" as long1
+    long1 : Just a test
+    [*] --> long1
+    long1 --> long1 : New Data
+    long1 --> ProcessData : Enough Data
+}
+State3 --> State3 : Failed
+State3 --> [*] : Succeeded / Save Result
+State3 --> [*] : Aborted
+@enduml
+
+@startuml
+[*] --> Active
+
+state Active {
+    [*] -> NumLockOff
+    NumLockOff --> NumLockOn : EvNumLockPressed
+    NumLockOn --> NumLockOff : EvNumLockPressed
+    --
+    [*] -> CapsLockOff
+    CapsLockOff --> CapsLockOn : EvCapsLockPressed
+    CapsLockOn --> CapsLockOff : EvCapsLockPressed
+    --
+    [*] -> ScrollLockOff
+    ScrollLockOff --> ScrollLockOn : EvCapsLockPressed
+    ScrollLockOn --> ScrollLockOff : EvCapsLockPressed
+}
+@enduml
+
+@startuml
+[*] -up-> First
+First -right-> Second
+Second --> Third
+Third -left-> Last
+@enduml
+
+@startuml
+[*] --> Active
+Active --> Inactive
+
+note left of Active : this is a short\nnote
+
+note right of Inactive
+    A note can also
+    be defined on
+    several lines
+end note
+@enduml
+
+@startuml
+state foo
+note "This is a floating note" as N1
+@enduml
+
+@startuml
+[*] --> NotShooting
+
+state "Not Shooting State" as NotShooting {
+    state "Idle mode" as Idle
+    state "Configuring mode" as Configuring
+    [*] --> Idle
+    Idle --> Configuring : EvConfig
+    Configuring --> Idle : EvConfig
+}
+note right of NotShooting : This is a note on composite state
+@enduml
+
+@startuml
+skinparam BackgroundColor LightYellow
+skinparam state {
+    StartColor MediumBlue
+    EndColor Red
+    BackgroundColor Peru
+    BackgroundColor<<Warning>> Olive
+    BorderColor Gray
+    Fontname Impact
+}
+
+[*] --> NotShooting
+
+state "Not Shooting State" as NotShooting {
+    state "Idle mode" as Idle <<Warning>>
+    state "Configuring mode" as Configuring
+    [*] --> Idle
+    Idle --> Configuring : EvConfig
+    Configuring --> Idle : EvConfig
+}
+NotShooting --> [*]
+@enduml
+
+@startuml
+object firstObject
+object "My Second Object" as o2
+@enduml
+
+@startuml
+object Object01
+object Object02
+object Object03
+object Object04
+object Object05
+object Object06
+object Object07
+object Object08
+
+Object01 <|-- Object02
+Object03 *-- Object04
+Object05 o-- "4" Object06
+Object07 .. Object08 : some labels
+@enduml
+
+@startuml
+object user
+
+user : name = "Dummy"
+user : id = 123
+@enduml
+
+@startuml
+object user {
+    name = "Dummy"
+    id = 123
+}
+@enduml
+
+@startuml
+robust "ウェブブラウザ" as WB
+concise "ユーザ" as WU
+
+@0
+WU is アイドル
+WB is アイドル
+
+@100
+WU is 待機
+WB is 処理中
+
+@300
+WB is 待機
+@enduml
+
+@startuml
+robust "ウェブブラウザ" as WB
+concise "ユーザ" as WU
+
+@0
+WU is アイドル
+WB is アイドル
+
+@100
+WU -> WB : URL
+WU is 待機
+WB is 処理中
+
+@300
+WB is 待機
+@enduml
+
+@startuml
+robust "DNS Resolver" as DNS
+robust "ウェブブラウザ" as WB
+concise "ユーザ" as WU
+
+@0
+WU is アイドル
+WB is アイドル
+DNS is アイドル
+
+@+100
+WU -> WB : URL
+WU is 待機
+WB is 処理中
+
+@+200
+WB is 待機
+WB -> DNS@+50 : URLからIPアドレスを解決
+
+@+100
+DNS is 処理中
+
+@+300
+
+DNS is アイドル
+@enduml
+
+@startuml
+robust "ウェブブラウザ" as WB
+concise "ユーザ" as WU
+
+@WB
+0 is アイドル
++200 is 処理中
++100 is 待機
+
+@WU
+0 is 待機
++500 is ok
+@enduml
+
+@startuml
+concise "ユーザ" as WU
+scale 100 as 50 pixels
+
+@WU
+0 is 待機
++500 is ok
+@enduml
+
+@startuml
+robust "ウェブブラウザ" as WB
+concise "ユーザ" as WU
+
+WB is 初期化中
+WU is 不在
+
+@WB
+0 is アイドル
++200 is 処理中
++100 is 待機
+
+@WU
+0 is 待機
++500 is ok
+@enduml
+
+@startuml
+robust "Signal1" as S1
+robust "Signal2" as S2
+S1 has 0,1,2,hello
+S2 has 0,1,2
+@0
+S1 is 0
+S2 is 0
+@100
+S1 is {0,1} #SlateGrey
+S2 is {0,1}
+@200
+S1 is 1
+S2 is 0
+@300
+S1 is hello
+S2 is {0,2}
+@enduml
+
+@startuml
+concise "Web User" as WU
+
+@0
+WU is {-}
+
+@100
+WU is A1
+
+@200
+WU is {-}
+
+@300
+WU is {hidden}
+
+@400
+WU is A3
+
+@500
+WU is {-}
+@enduml
+
+@startuml
+robust "ウェブブラウザ" as WB
+concise "ユーザ" as WU
+
+WB is 初期化中
+WU is 不在
+
+@WB
+0 is アイドル
++200 is 処理中
++100 is 待機
+WB@0 <-> @50 : {50 ms lag}
+
+@WU
+0 is 待機
++500 is ok
+@200 <-> @+150 : {150 ms}
+@enduml
+
+@startuml
+
+Title これはタイトル
+header: ここにヘッダーを書く
+footer: ここにフッターを書く
+legend
+図の説明は、ここに書きます。
+複数行書けますよ
+end legend
+caption 一行の説明は、captionに書きましょう。
+
+robust "Web ブラウザ" as WB
+concise "ユーザ" as WU
+
+@0
+WU is アイドル
+WB is アイドル
+
+@100
+WU is 待機
+WB is 処理中
+
+@300
+WB is 待機
+@enduml
+
+@startgantt
+[プロトタイプを設計] lasts 15 days
+[プロトタイプをテスト] lasts 10 days
+@endgantt
+
+@startgantt
+[プロトタイプを設計] lasts 15 days
+[プロトタイプをテスト] lasts 10 days
+[プロトタイプをテスト] starts at [プロトタイプを設計]'s end
+@endgantt
+
+@startgantt
+[プロトタイプを設計] lasts 10 days
+[プロトタイプを実装] lasts 10 days
+[テストを実装] lasts 5 days
+[プロトタイプを実装] starts at [プロトタイプを設計]'s end
+[テストを実装] starts at [プロトタイプを実装]'s start
+@endgantt
+
+@startgantt
+[プロトタイプを設計] as [設計] lasts 15 days
+[プロトタイプをテスト] as [テスト] lasts 10 days
+[テスト] starts at [設計]'s end
+@endgantt
+
+@startgantt
+[プロトタイプを設計] lasts 13 days
+[テスト] lasts 4 days
+[テスト] starts at [プロトタイプを設計]'s end
+[プロトタイプを設計] is colored in Fuchsia/FireBrick
+[テスト] is colored in GreenYellow/Green
+@endgantt
+
+@startgantt
+[プロトタイプをテスト] lasts 10 days
+[プロトタイプが完成] happens at [プロトタイプをテスト]'S end
+[製造ラインの準備] lasts 12 days
+[製造ラインの準備] starts at [プロトタイプをテスト]'s end
+@endgantt
+
+@startgantt
+Project starts the 20th of september 2017
+[プロトタイプを設計] as [タスク1] lasts 13 days
+[タスク1] is colored in Lavender/LightBlue
+@endgantt
+
+@startgantt
+project starts the 2018/04/09
+saturday are closed
+sunday are closed
+2018/05/01 is closed
+2018/04/17 to 2018/04/19 is closed
+[Prototype design] lasts 14 days
+[Test prototype] lasts 4 days
+[Test prototype] starts at [Prototype design]'s end
+[Prototype design] is colored in Fuchsia/FireBrick
+@endgantt
+
+@startgantt
+[Prototype design] lasts 14 days
+then [Test prototype] lasts 4 days
+then [Deploy prototype] lasts 6 days
+@endgantt
+
+@startgantt
+[Prototype design] lasts 14 days
+[Build prototype] lasts 4 days
+[Prepare test] lasts 6 days
+[Prototype design] -> [Build prototype]
+[Prototype design] -> [Prepare test]
+@endgantt
+
+@startgantt
+[Task1] lasts 10 days
+then [Task2] lasts 4 days
+-- Phase Two --
+then [Task3] lasts 5 days
+then [Task4] lasts 6 days
+@endgantt
+
+@startgantt
+[Task1] on {Alice} lasts 10 days
+[Task2] on {Bob:50%} lasts 2 days
+then [Task3] on {Alice:25%} lasts 1 days
+@endgantt
+
+@startgantt
+[プロトタイプを設計] lasts 13 days and is colored in Lavender/LightBlue
+[プロトタイプをテスト] lasts 9 days and is colored in Coral/Green and starts 3 days after [プロトタイプを設計]'s end
+[テストを実装] lasts 5 days and ends at [プロトタイプを設計]'s end
+[テストプログラマの雇用] lasts 6 days and ends at [テストを実装]'s start
+[テストの実施] is colored in Coral/Green
+[テストの実施] starts 1 day before [プロトタイプをテスト]'S start and ends at [プロトタイプをテスト]'S end
+@endgantt
+
+@startmindmap
+* Debian
+** Ubuntu
+*** Linux Mint
+*** Kubuntu
+*** Lubuntu
+*** KDE Neon
+** LMDE
+** SolydXK
+** SteamOS
+** Raspbian with a very long name
+*** <s>Raspmbc</s> => OSMC
+*** <s>Raspyfi</s> => Volumio
+@endmindmap
+
+@startmindmap
+* root node
+** some first level node
+***_ second level node
+***_ another second level node
+***_ foo
+***_ bar
+***_ foobar
+** another first level node
+@endmindmap
+
+@startmindmap
++ OS
+++ Ubuntu
++++ Linux Mint
++++ Kubuntu
++++ Lubuntu
++++ KDE Neon
+++ LMDE
+++ SolydXK
+++ SteamOS
+++ Raspbian
+-- Windows 95
+-- Windows 98
+-- Windows NT
+--- Windows 8
+--- Windows 10 
+@endmindmap
+
+@startmindmap
+' NG
+* root node
+* some first level node
+* second level node
+* another second level node
+* another first level node
+@endmindmap
+
+@startmindmap
+* count
+** 100
+*** 101
+*** 102
+** 200
+
+left side
+** A
+*** AA
+*** AB
+** B
+@endmindmap
+
+@startmindmap
+caption figure 1
+title My super title
+
+* <&flag>Debian
+** <&globe>Ubuntu
+*** Linux Mint
+*** Kubuntu
+*** Lubuntu
+*** KDE Neon
+** <&graph>LMDE
+** <&pulse>SolydXK
+** <&people>SteamOS
+** <&star>Raspbian with a very long name
+*** <s>Raspmbc</s> => OSMC
+*** <s>Raspyfi</s> => Volumio
+
+header
+My super header
+endheader
+
+center footer My super footer
+
+legend right
+    Short
+    legend
+endlegend
+@endmindmap
+
+@startwbs
+* Business Process Modelling WBS
+** Launch the project
+*** Complete Staleholder Research
+*** Initial Implementation Plan
+** Design phase
+*** Model of AsIs  Processes Completed
+**** Model of AsIs Processes Completed1
+**** Model of AsIs Processes Completed2
+*** Measure AsIS performance metrics
+*** Identify Quick Wins
+** Complete innovate phase
+@endwbs
+
+@startwbs
+* Business Process Modelling WBS
+** Launch the Project
+*** Complete Stakeholder Research
+*** Initial Implementation Plan
+** Design phase
+*** Model of AsIs Processes Completed
+****< Model of AsIS Prpcesses Completed1
+****> Model of AsIS Prpcesses Completed2
+***< Measure AsIS Performance metrics
+***< Identify Quick Wins
+@endwbs
+
+@startwbs
++ New Job
+++ Decide on Job Requirments
++++ Identify gaps
++++ Review JDs
+++++ Sign-Up for courses
+++++ Volunteer
+++++ Reading
+++- Checklist
++++- Responsibilities
++++- Location
+++ CV Upload Done
++++ CV Updated
+++++ Splelling & Grammer
+++++ Check dates
+---- Skills
++++ Recruitment sites chosen
+@endwbs
+
+@startwbs
++ Project
+ + Part One
+  + Task 1.1
+   - LeftTask 1.2
+   + Task 1.3
+  + Part Two
+   + Task 2.1
+   + Task 2.2
+   -_ Task 2.2.1 To the left boxless
+   -_ Task 2.2.2 To the Left boxless
+   +_ Task 2.2.3 To the right boxless
+@endwbs
+
+@startuml
+:<math>int_0^1f(x)dx</math>;
+:<math>x^2+y_1+z_12^34</math>;
+note right
+Try also
+<math>d/dxf(x)=lim_(h->0)(f(x+h)-f(x))/h</math>
+<latex>P(y|\mathbf{x}) \mbox{ or } f(\mathbf{x})+\epsilon</latex>
+end note
+@enduml
+
+@startuml
+Bob -> Alice : Can you solve: <math>ax^2+bx+c=0</math>
+Alice --> Bob: <math>x = (-b+-sqrt(b^2-4ac))/(2a)</math>
+@enduml
+
+@startmath
+' NG
+f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
+@endmath
+
+@startlatex
+' NG
+\sum_{i=0}^{n-1} (a_i + b_i^2)
+@endlatex
+
+Common commands

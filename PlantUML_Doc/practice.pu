@@ -1155,3 +1155,622 @@ namespace net.foo {
 
 BaseClass <|-- net.unused.Person
 @enduml
+
+@startuml
+(*) --> "First Activity"
+"First Activity" --> (*)
+@enduml
+
+@startuml
+(*) --> "First Activity"
+--> [You can put also labels] "Second Activity"
+--> (*)
+@enduml
+
+@startuml
+(*) -up-> "First Activity"
+-right-> "Second Activity"
+--> "Third Activity"
+-left-> (*)
+@enduml
+
+@startuml
+(*) --> "Initialization"
+
+if "Some Test" then
+    -->[true] "Some Activity"
+    --> "Another activity"
+    -right-> (*)
+else
+    ->[false] "Something else"
+    --> [Ending Process] (*)
+endif
+@enduml
+
+@startuml
+(*) --> "check input"
+If "input is vervose" then
+    --> [Yes] "turn on verbosity"
+    --> "run command"
+else
+    --> "run command"
+Endif
+--> (*)
+@enduml
+
+@startuml
+(*) --> if "Some Test" then
+    -->[true] "activity 1"
+
+    if "" Then
+        -> "activity 3" as a3
+    else
+        if "Other test" then
+            -left-> "activity 5"
+        else
+            --> "activity 6"
+        endif
+    endif
+else
+    ->[flase] "activity 2"
+endif
+
+a3 --> if "last test" then
+    --> "actibity 7"
+else
+    -> "activity 8"
+endif
+@enduml
+
+@startuml
+(*) --> ===B1===
+--> "Parallel Activity 1"
+--> ===B2===
+
+===B1=== --> "Parallel Activity 2"
+--> ===B2===
+
+--> (*)
+@enduml
+
+@startuml
+(*) -left-> "this <size:20>activity</size>
+is <b>very</b> <color:red>long2</color>
+and defined on several llines
+that contains many <i>text</i>" as A1
+
+-up-> "Another activity\n on several lines"
+
+A1 --> "Short activity <img:sourceforge.jpg>"
+@enduml
+
+@startuml
+(*) --> "Some Activity"
+note right : This activity has to be defined
+"Some Activity" --> (*)
+note left
+    This note is on
+    several lines
+end note
+@enduml
+
+@startuml
+partition Conductor {
+    (*) --> "Climbs on Platform"
+    --> ===S1===
+    --> Bows
+}
+
+partition Audience #LightSkyBlue {
+    ===S1=== --> Applauds
+}
+
+partition Conductor {
+    Bows --> ===S2===
+    --> WavesArmes
+    Applauds --> ===S2===
+}
+
+partition Orchestra #CCCCEE {
+    WavesArmes --> Introduction
+    --> "Play music"
+}
+@enduml
+
+@startuml
+skinparam BackgroundColor #AAFFFF
+skinparam activity {
+    StartColor red
+    BarColor SaddleBrown
+    EndColor Silver
+    BackgroundColor Peru
+    BackgroundColor<< Begin >> Olive
+    BorderColor Peru
+    FontName Impact
+}
+
+(*) --> "Climbs on Platform" << Begin >>
+--> === S1 ===
+--> Bows
+--> === S2 ===
+--> WavesArmes
+--> (*)
+@enduml
+
+@startuml
+'Default is skinparam activityShape roudBox
+skinparam activityShape octagon
+
+(*) --> "First Activity"
+"First Activity" --> (*)
+@enduml
+
+@startuml
+title Servlet Container
+(*) --> "ClickServlet.handleRequest()"
+--> "New Page"
+
+if "Page.onSecurityCheck" then
+    ->[true] "Page.onInit()"
+
+    if "isForward?" then
+        ->[no] "Process controls"
+
+        if "continue processing?" then
+            -->[yes] ===RENDERING===
+        else
+            -->[no] ===REDIRECT_CHECK===
+        endif
+    else
+        -->[yes] ===RENDERING===
+    endif
+
+    if "is Post?" then
+        -->[yes] "Page.onPost()"
+        --> "Page.OnRender()" as render
+        --> ===REDIRECT_CHECK===
+    else
+        -->[no] "Page.onGet()"
+        --> render
+    endif
+
+else
+    -->[false] ===REDIRECT_CHECK===
+endif
+
+if "Do redirect?" then
+    ->[yes] "redirect request"
+    --> ==BEFORE_DESTROY===
+else
+    if "Do Forward?" then
+        -left->[yes] "Forward request"
+        --> ==BEFORE_DESTROY===
+    else
+        -right->[no] "Render page template"
+        --> ==BEFORE_DESTROY===
+    endif
+endif
+
+--> "Page.onDestroy()"
+-->(*)
+
+@enduml
+
+@startuml
+:Hello world;
+:This is on defined on
+several **lines**;
+@enduml
+
+@startuml
+start
+:Hello world;
+:This is on defined on
+several **lines**;
+stop
+@enduml
+
+@startuml
+start
+:Hello world;
+:This is on defined on
+several **lines**;
+end
+@enduml
+
+@startuml
+start
+if (Graphviz installed?) then (yes)
+    :process all\ndiagrams;
+else (no)
+    :process only
+    __sequence__ and __activity__ deagrams;
+endif
+stop
+@enduml
+
+@startuml
+start
+if (condition A) then (yes)
+    :Text 1;
+elseif (condition B) Then (yes)
+    :Text 2;
+    stop
+elseif (condition C) then (yes)
+    :Text 3;
+elseif (condition D) then (yes)
+    :Text 4;
+else (nothing)
+    :Text else;
+endif
+stop
+@enduml
+
+@startuml
+start
+repeat
+    :read data;
+    :generate diagrams;
+repeat while (more data?)
+stop
+@enduml
+
+@startuml
+start
+while (data available?)
+    :read data;
+    :generate diagrams;
+endwhile
+
+stop
+@enduml
+
+@startuml
+while (check filesize ?) is (not empty)
+    :read file;
+endwhile (empty)
+:close file;
+@enduml
+
+@startuml
+start
+if (multiprocesser?) then (yes)
+    fork
+    :Treatment 1;
+    fork again
+    :treatment 2;
+    end fork
+else (monoproc)
+    :treatment 1;
+    :treatment 2;
+!endif
+@enduml
+
+@startuml
+:foo1;
+floating note left: This is a note
+:foo2;
+note right
+    This note is on several
+    //lines// and can
+    contain <b>HTML</b>
+    ====
+    * Calling the method ""foo()"" is prohibited
+end note
+stop
+@enduml
+
+@startuml
+start
+:starting progress;
+#HotPink:reading configuration files
+These files should edited at this point!;
+#AAAAAA:ending of the process;
+@enduml
+
+@startuml
+:foo1;
+-> You can put text on arrows;
+if (test) then
+    -[#blue]->
+    :foo2;
+    -[#green,dashed]-> The text can
+    also be on several lines
+    and **vary** long...;
+    :foo3;
+else
+    -[#black,dotted]->
+    :foo4;
+endif
+-[#gray,bold]->
+:foo5;
+@enduml
+
+@startuml
+start
+:Some activity;
+(A)
+detach
+(A)
+:Other activity;
+@enduml
+
+@startuml
+start
+partition Initialization {
+    :read config file;
+    :init internal variable;
+}
+partition Running {
+    :wait for user interaction;
+    :print information;
+}
+stop
+@enduml
+
+@startuml
+|Swimlane1|
+start
+:foo1;
+|#AntiqueWhite|Swimlane2|
+:foo2;
+:foo3;
+|Swimlane1|
+:foo4;
+|Swimlane2|
+:foo5;
+stop
+@enduml
+
+@startuml
+:start;
+fork
+    :foo1;
+    :foo2;
+fork again
+    :foo3;
+    detach
+endfork
+if (foo4) then
+    :foo5;
+    detach
+endif
+:foo6;
+detach
+:foo7;
+stop
+@enduml
+
+@startuml
+:Ready;
+:next(o)|
+:Receiving;
+split
+    :nak(i)<
+    :ack(o)<
+split again
+    :ack(i)<
+    :next(o)
+    on several line|
+    :i := i + 1]
+    :ack(o)>
+split again
+    :err(i)<
+    :nak(o)>
+split again
+    :foo/
+split again
+    :i > 5}
+    stop
+end split
+:finish;
+@enduml
+
+@startuml
+start
+:「更新ボタンを押す」;
+:new page;
+if (Page.onSecurityCheck) then (true)
+    :Page.onInit();
+    if (isForwad?) then (no)
+        :Process controls;
+        if (continue processing?) then (no)
+            stop
+        endif
+
+        if (isPost?) then (yes)
+            :Page.onPost();
+        else (no)
+            :Page.onGet();
+        endif
+        :Page.onRender();
+    endif
+else (false)
+endif
+
+if (do redirect?) then (yes)
+    :redirect process;
+else
+    if (do forward?) then (yes)
+        :Forward request;
+    else (no)
+        :Render page template;
+    endif
+endif
+stop
+@enduml
+
+@startuml
+[First component]
+[Another component] as Comp2
+component Comp3
+component [Last\ncompnent] as Comp4
+@enduml
+
+@startuml
+() "First Interface"
+() "Another interface" as Interf2
+interface Interf3
+interface "Last\ninterface" as Interf4
+@enduml
+
+@startuml
+DataAccess - [First Component]
+[First Component] ..> HTTP : use
+@enduml
+
+@startuml
+interface "Data Access" as DA
+
+DA - [First Component]
+[First Component] ..> HTTP : use
+
+note left of HTTP : Web Service only
+note right of [First Component]
+    A note can also
+    be on several lines
+end note
+@enduml
+
+@startuml
+package "Some Group" {
+    HTTP - [First Component]
+    [Another Component]
+}
+
+node "Other Groups" {
+    FTP - [Second Component]
+    [First Component] --> FTP
+}
+
+cloud {
+    [Example 1]
+}
+
+database "MySql" {
+    folder "This is my folder" {
+        [Folder 3]
+    }
+    frame "Foo" {
+        [Frame 4]
+    }
+}
+
+[Another Component] --> [Example 1]
+[Example 1] --> [Folder 3]
+[Folder 3] --> [Frame 4]
+@enduml
+
+@startuml
+[Component] --> Interface1
+[Component] -> Interface2
+@enduml
+
+@startuml
+Interface1 <-- [Component]
+Interface2 <- [Component]
+@enduml
+
+@startuml
+[Component] -left-> left
+[Component] -right-> right
+[Component] -up-> up
+[Component] -down-> down
+@enduml
+
+@startuml
+skinparam ComponentStyle uml2
+
+interface "Data Access" as DA
+
+DA - [First Component]
+[First Component] ..> HTTP : use
+@enduml
+
+@startuml
+component comp1 [
+    This component
+    has a long comment
+    on several lines
+]
+@enduml
+
+@startuml
+component [Web Server] #Yellow
+@enduml
+
+@startuml
+sprite $businessProcess [16x16/16] {
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFF0FFFFF
+    FFFFFFFFFF00FFFF
+    FF00000000000FFF
+    FF000000000000FF
+    FF00000000000FFF
+    FFFFFFFFFF00FFFF
+    FFFFFFFFFF0FFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+    FFFFFFFFFFFFFFFF
+}
+
+rectangle "End to End\nbusiness process" <<$businessProcess>> {
+    rectangle "inner process 1" <<$businessProcess>> as src
+    rectangle "inner process 2" <<$businessProcess>> as tgt
+    src -> tgt
+}
+@enduml
+
+@startuml
+skinparam interface {
+    BackgroundColor RosyBrown
+    BorderColor orange
+}
+
+skinparam component {
+    FontSize 13
+    BackgroundColor <<Apache>> Red
+    BorderColor<<Apache>> #FF6655
+    FontName Courier
+    BorderColor black
+    BackgroundColor gold
+    ArrowFontName Impact
+    ArrowColor #FF6655
+    ArrowFontColor #777777
+}
+
+() "Data Access" as DA
+
+DA - [First Component]
+[First Component] ..> () HTTP : use
+HTTP - [Web Server] << Apache >>
+@enduml
+
+@startuml
+[AA] <<static lib>>
+[BB] <<shared lib>>
+[CC] <<static lib>>
+
+node node1
+node node2 <<shared node>>
+database Production
+
+skinparam component {
+    backgroundColor<<static lib>> DarkKhaki
+    backgroundColor<<shared lib>> Green
+}
+
+skinparam node {
+    borderColor Green
+    backgroundColor Yellow
+    backgroundColor<<shared node>> Magenta
+}
+skinparam DatabaseBackgroundColor aqua
+@enduml
+
+ステート図

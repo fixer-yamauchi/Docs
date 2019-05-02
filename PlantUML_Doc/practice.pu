@@ -704,6 +704,454 @@ rectangle checkout {
 }
 @enduml
 
-クラス図
+@startuml
+Class01 <|-- Class02
+Class03 *-- Class04
+Class05 o-- Class06
+Coass07 .. Class08
+Class09 -- Class10
+@enduml
 
+@startuml
+Class11 <|.. Class12
+Class13 --> Class14
+Class15 ..> Class16
+Class17 ..|> Class18
+Class19 <--* Class20
+@enduml
 
+@startuml
+Class21 #-- Class22
+Class23 x-- Class24
+Class25 }-- Class26
+Class27 +-- Class28
+Class29 ^-- Class30
+@enduml
+
+@startuml
+Class01 "1" *-- "many" Class02 : contains
+Class03 o-- Class04 : aggregation
+Class05 --> "1" Class06
+@enduml
+
+@startuml
+class Car
+
+Driver - Car : drives >
+Car *- Wheel : have 4 >
+Car -- Person : < owns
+@enduml
+
+@startuml
+Object <|-- ArrayList
+
+Object : equals()
+ArrayList : Object[] elementData
+ArrayList : size()
+@enduml
+
+@startuml
+Class Dummy {
+    String data
+    void methods()
+}
+
+class Fright {
+    flightNumber : Integer
+    depatureTime : Date
+}
+@enduml
+
+@startuml
+class Dummy {
+    {field} A field (despite parentheses)
+    {method} Some method
+}
+@enduml
+
+@startuml
+class Dummy {
+    -field1
+    #field1
+    -method1()
+    +method2()
+}
+@enduml
+
+@startuml
+skinparam ClassAttributeIconSize 0
+class Dummy {
+    -field1
+    #field1
+    -method1()
+    +method2()
+}
+@enduml
+
+@startuml
+class Dummy {
+    {static} String id
+    {abstract} void methods()
+}
+@enduml
+
+@startuml
+class Foo1 {
+    You can use
+    several lines
+    ..
+    as you want
+    and group
+    ==
+    things together.
+    __
+    You can have as many groups
+    as you want
+    __
+    End of class
+}
+
+class User {
+    .. Simple Getter ..
+    + getName()
+    + getAddress()
+    .. Some setter ..
+    + setName()
+    __ private data __
+    int age
+    -- encrypted --
+    String password
+}
+@enduml
+
+@startuml
+class Object << general >>
+Object <|--- ArrayList
+
+note top of Object : In java, every class\nextends this one.
+
+note "This is a floating note" as N1
+note "This note is connected\nto several objectsl." as N2
+Object .. N2
+N2 .. ArrayList
+
+class Foo
+note left : On last defined class
+@enduml
+
+@startuml
+class Foo
+note left : On last defined class
+
+note top of Object
+    In Java, <size:18>every</size> <u>class</u>
+    <b>extends</b>
+    <i>this</i> one.
+end note
+
+note as N1
+    This note is <u>also</u>
+    <b><color:RoyalBlue>on several</color>
+    <s>words</s> lines
+    And this is hosted by <img:sourceforge.jpg>
+end note
+@enduml
+
+@startuml
+class Dummy
+Dummy --> Foo : A link
+note on link #red: note that is red
+
+Dummy --> Foo2 : Another link
+note right on link #Blue
+this is my note on right link
+and in blue
+end note
+
+@enduml
+
+@startuml
+abstract class AbstractList
+abstract AbstractCollection
+interface List
+interface Collection
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+class ArrayList {
+    Object[] elementData
+    size()
+}
+
+enum TimeUnit {
+    DAYS
+    HOURS
+    MINUTES
+}
+
+annotation SuppressWarnings
+@enduml
+
+@startuml
+class "This is my class" as class1
+class class2 as "It works this way too"
+
+class2 *-- "foo/dummy" : use
+@enduml
+
+@startuml
+class Dummy1 {
+    +myMethods()
+}
+class Dummy2 {
+    +hiddemMethod()
+}
+class Dummy3 <<Serializable>> {
+    String name
+}
+
+hide members
+hide <<Serializable>> circle
+show Dummy1 Methods
+show <<Serializable>> fields
+@enduml
+
+@startuml
+class Foo1
+class Foo2
+
+Foo2 *-- Foo1
+
+hide Foo2
+@enduml
+
+@startuml
+class Foo<? extends Element> {
+    int size()
+}
+Foo *- Element
+@enduml
+
+@startuml
+class System << (S,#FF7700) Singleton >>
+class Date << (D,Orchid) >>
+@enduml
+
+@startuml
+package "Classic Collections" #DDDDDD {
+    Object <|-- ArrayList
+}
+package net.sourceforge.plantuml {
+    Object <|-- Demo1
+    Demo1 *- Demo2
+}
+@enduml
+
+@startuml
+scale 750 width
+package foo1 <<Node>> {
+    class Class1
+}
+
+package foo2 <<Rectangle>> {
+    class Class2
+}
+
+package foo3 <<Folder>> {
+    class Class3
+}
+
+package foo4 <<Frame>> {
+    class Class4
+}
+
+package foo5 <<Cloud>> {
+    class Class5
+}
+
+package foo6 <<Database>> {
+    class Class6
+}
+@enduml
+
+@startuml
+skinparam PackageStyle rectangle
+
+package foo1.foo2 {
+}
+
+package foo1.foo2.foo3 {
+    class Object
+}
+
+foo1.foo2 +-- foo1.foo2.foo3
+@enduml
+
+@startuml
+class BaseClass
+
+namespace net.dummy #DDDDDD {
+    .BaseClass <|-- Person
+    Meeting o-- Person
+    .BaseClass <|- Meeting
+}
+
+namespace net.foo {
+    net.dummy.Person <|- Person
+    .BaseClass <|-- Person
+    net.dummy.Meeting o-- Person
+}
+
+BaseClass <|-- net.unused.Person
+@enduml
+
+@startuml
+set namespaceSeparator ::
+class X1::X2::foo {
+    some info
+}
+@enduml
+
+@startuml
+set namespaceSeparator none
+class X1.X2.foo {
+    some info
+}
+@enduml
+
+@startuml
+class foo
+bar ()- foo
+@enduml
+
+@startuml
+Room o- Student
+Room *-- Chair
+@enduml
+
+@startuml
+Student -o Room
+Chair --* Room
+@enduml
+
+@startuml
+foo -left-> dummyLeft
+foo -right-> dummyRight
+foo -up-> dummyUp
+foo -down-> dummyDown
+@enduml
+
+@startuml
+class Student {
+    Name
+}
+Student "0..*" - "1..*" Course
+(Student, Course) .. Enrollment
+
+class Enrollment {
+    drop()
+    cancel()
+}
+@enduml
+
+@startuml
+class Student {
+    Name
+}
+Student "0..*" -- "1..*" Course
+(Student, Course) . Enrollment
+
+class Enrollment {
+    drop()
+    cancel()
+}
+@enduml
+
+@startuml
+skinparam class {
+    BackgroundColor PaleGreen
+    ArrowColor SeaGreen
+    BorderColor SpringGreen
+}
+skinparam StereotypeCBackgroundColor YellowGreen
+
+Class01 "1" *-- "many" Class02 : contains
+Class03 o-- Class04 : aggregation
+@enduml
+
+@startuml
+skinparam class {
+    BackgroundColor PaleGreen
+    ArrowColor SeaGreen
+    BorderColor SpringGreen
+    BackgroundColor<<Foo>> Wheat
+    BorderColor<<Foo>> Tomato
+}
+skinparam StereotypeCBackgroundColor YellowGreen
+skinparam StereotypeCBackgroundColor<<Foo>> DimGray
+
+Class01 <<Foo>>
+Class03 <<Foo>>
+Class01 "1" *-- "many" Class02 : contains
+
+Class03 o-- Class04 : aggregation
+
+@enduml
+
+@startuml
+skinparam BackgroundColor AntiqueWhite/Gold
+skinparam ClassBackgroundColor Wheat|CornflowerBlue
+
+class Foo #red-green
+note left of Foo #blue\9932CC
+    this is my
+    note on this class
+end note
+
+package example #GreenYellow/LightGoldenRodYellow {
+    class Dummy
+}
+@enduml
+
+@startuml
+class Bar1
+class Bar2
+together {
+    class Together1
+    class Together2
+    class Together3
+}
+Together1 - Together2
+Together2 - Together3
+Together2 -[hidden]--> Bar1
+Bar1 -[hidden]> Bar2
+@enduml
+
+@startuml
+' Split into 4 pages
+page 2x2
+skinparam PageMargin 10
+skinparam PageExternalColor gray
+skinparam PageBorderColor black
+
+class BaseClass
+
+namespace net.dummy #DDDDDD {
+    .BaseClass <|-- Person
+    Meeting o-- Person
+    .BaseClass <|- Meeting
+}
+
+namespace net.foo {
+    net.dummy.Person <|- Person
+    .BaseClass <|-- Person
+    net.dummy.Meeting o-- Person
+}
+
+BaseClass <|-- net.unused.Person
+@enduml

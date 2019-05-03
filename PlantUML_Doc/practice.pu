@@ -2411,4 +2411,929 @@ f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
 \sum_{i=0}^{n-1} (a_i + b_i^2)
 @endlatex
 
-Common commands
+@startuml
+Alice -> Bob: Authentication Request
+
+header
+<font color=red>Warning:</font>
+Do not use in production.
+endheader
+
+center footer Generated for demonstration
+@enduml
+
+@startuml
+scale 180*90
+Bob->Alice:hello
+@enduml
+
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor red
+skinparam titleBackgroundColor Aqua-CadetBlue
+
+title Simple communication\nexample
+
+Alice -> Bob: Authentication Request
+Bob -> Alice: Authentication Response
+@enduml
+
+@startuml
+title
+    <u>Simple</u> communication example
+    on <i>several</i> lines and using <back:cadetblue>creole tags</back>
+end title
+
+Alice -> Bob: Authentication Request
+Bob -> Alice: Authentication Response
+@enduml
+
+@startuml
+caption figure 1
+Alice -> Bob: Hello
+@enduml
+
+@startuml
+Alice -> Bob: Hello
+legend right
+    Short
+    legend
+endlegend
+@enduml
+
+@startuml
+Alice -> Bob : Hello
+legend top left
+    Short
+    legend
+endlegend
+@enduml
+
+@startuml
+salt
+{
+    Just plain text
+    [This is my button]
+    () Unchecked radio
+    (X) Checked radio
+    [] Unchecked box
+    [X] Checked box
+    "Enter text here   "
+    ^This is a droplist^
+}
+@enduml
+
+@startsalt
+{
+    Login    | "Myname   "
+    Password | "****     "
+    [Cancel] | [   OK    ]
+}
+@endsalt
+
+@startsalt
+{+
+    Login    | "Myname   "
+    Password | "****     "
+    [Cancel] | [   OK    ]
+}
+@endsalt
+
+more info
+@startsalt
+{^"My group box"
+    Login    | "Myname   "
+    Password | "****     "
+    [Cancel] | [   OK    ]
+}
+@endsalt
+
+@startsalt
+{
+    Text1
+    ..
+    "Some field"
+    ==
+    Note on usage
+    --
+    Another text
+    --
+    [Ok]
+}
+@endsalt
+
+@startsalt
+{
+    {T
+        + World
+        ++ America
+        +++ Canada
+        +++ USA
+        ++++ New York
+        ++++ Boston
+        +++ Mexico
+        ++ Europe
+        +++ Italy
+        +++ Gernmany
+        ++++ Berlin
+        ++ Africa
+    }
+}
+@endsalt
+
+@startsalt
+{
+Name |" "
+Modifiers: | { (X) public | () default | () private | () protected
+            [] abstract | [] final   | [] static }
+Superclass:  | { "java.lang.Object " | [Browse...] }
+}
+@endsalt
+
+@startsalt
+{+
+{/ <b>General | Fullscreen | Behavior | Saving }
+{
+{ Open image in: | ^Smart Mode^ }
+[X] Smooth images when zoomed
+[X] Confirm image deletion
+[ ] Show hidden images
+}
+[Close]
+}
+@endsalt
+
+@startsalt
+{+
+{/ <b>General
+Fullscreen
+Behavior
+Saving } |
+{
+{ Open image in: | ^Smart Mode^ }
+[X] Smooth images when zoomed
+[X] Confirm image deletion
+[ ] Show hidden images
+[Close]
+}
+}
+@endsalt
+
+@startsalt
+{+
+{* File | Edit | Source | Refactor }
+{/ General | Fullscreen | Behavior | Saving }
+{
+{ Open image in: | ^Smart Mode^ }
+[X] Smooth images when zoomed
+[X] Confirm image deletion
+[ ] Show hidden images
+}
+[Close]
+}
+@endsalt
+
+@startsalt
+{+
+{* File | Edit | Source | Refactor
+ Refactor | New | Open File | - | Close | Close All }
+{/ General | Fullscreen | Behavior | Saving }
+{
+{ Open image in: | ^Smart Mode^ }
+[X] Smooth images when zoomed
+[X] Confirm image deletion
+[ ] Show hidden images
+}
+[Close]
+}
+@endsalt
+
+@startsalt
+{#
+. | Column 2 | Column 3
+Row header 1 | value 1 | value 2
+Row header 2 | A long cell | *
+}
+@endsalt
+
+@startsalt 
+{
+  Login<&person> | "MyName   "
+  Password<&key> | "****     "
+  [Cancel <&circle-x>] | [OK <&account-login>]
+} 
+@endsalt
+
+@startuml
+listopeniconic
+@enduml
+
+@startuml
+(*) --> "
+{{
+salt
+{+
+<b>an example
+choose one option
+()one
+()two
+[ok]
+}
+}}
+" as choose
+choose -right-> "
+{{
+salt
+{+
+<b>please wait
+operation in progress
+<&clock>
+[cancel]
+}
+}}
+" as wait
+wait -right-> "
+{{
+salt
+{+
+<b>success
+congratulations!
+[ok]
+}
+}}
+" as success
+wait -down-> "
+{{
+salt
+{+
+<b>error
+failed, sorry
+[ok]
+}
+}}
+@enduml
+
+@startuml
+!definelong SALT(x)
+"{{
+salt
+_##x
+}}
+" as x
+!enddefinelong
+!definelong _choose
+{+
+<b>an example
+choose one option
+()one
+()two
+[ok]
+}
+!enddefinelong
+!definelong _wait
+{+
+<b>please wait
+operation in progress
+<&clock>
+[cancel]
+}
+!enddefinelong
+!definelong _success
+{+
+<b>success
+congratulations!
+[ok]
+}
+!enddefinelong
+!definelong _error
+{+
+<b>error
+failed, sorry
+[ok]
+}
+!enddefinelong
+(*) --> SALT(choose)
+-right-> SALT(wait)
+wait -right-> SALT(success)
+wait -down-> SALT(error)
+@enduml
+
+
+@startsalt
+{S
+Message
+.
+.
+.
+.
+}
+@endsalt
+
+@startsalt
+{SI
+Message
+.
+.
+.
+.
+}
+@endsalt
+
+@startsalt
+{S-
+Message
+.
+. 
+.
+.
+}
+@endsalt
+
+@startuml
+Alice -> Bob : hello --there--
+... Some ~~long delay~~ ...
+Bob -> Alice : ok
+note left
+  This is **bold**
+  This is //italics//
+  This is ""monospaced""
+  This is --stroked--
+  This is __underlined__
+  This is ~~waved~~
+end note
+@enduml
+
+@startuml
+object demo {
+    * Bullet list
+    * Second item
+}
+note left
+    * Bullet list
+    * Second item
+    ** Sub item
+end note
+legend
+    # Numbered list
+    # Second item
+    ## Sub item
+    ## Another sub item
+    # Third item
+end legend
+@enduml
+
+@startuml
+object demo {
+  This is not ~___underscored__.
+  This is not ~""monospaced"".
+}
+@enduml
+
+@startuml
+database DB1 as "
+You can have horizontal line
+----
+Or double line
+====
+Or strong line
+____
+Or dotted line
+..My title..
+Enjoy!
+"
+note right
+  This is working also in notes
+  You can also add title in all these lines
+  ==Title==
+  --Another title--
+end note
+@enduml
+
+@startuml
+usecase UC1 as "
+= Extra-large heading
+Some text
+== Large heading
+Other text
+=== Medium heading
+Information
+....
+==== Small heading"
+@enduml
+
+@startuml
+:* You can change <color:red>text color</color>
+* You can change <back:cadetblue>background color</back>
+* You can change <size:18>size</size>
+* You use <u>legacy</u> <b>HTML <i>tag</i></b>
+* You use <u:red>color</u> <s:green>in HTML</s> <w:#0000FF>tag</w>
+----
+* Use image : <img:http://plantuml.com/logo3.png>
+;
+@enduml
+
+@startuml
+skinparam titleFontSize 14
+title
+  Example of simple table
+  |= |= table |= header |
+  | a | table | row |
+  | b | table | row |
+end title
+[*] --> State1
+@enduml
+
+@startuml
+start
+:Here is the result
+|= |= table |= header |
+| a | table | row |
+|<#FF8080> red |<#80FF80> green |<#8080FF> blue |
+<#yellow>| b | table | row |;
+@enduml
+
+@startuml
+skinparam titleFontSize 14
+title
+  Example of Tree
+  |_ First line
+  |_ **Bom(Model)**
+|_ prop1
+|_ prop2
+|_ prop3
+  |_ Last line
+end title
+[*] --> State1
+@enduml
+
+
+@startuml
+usecase foo as "this is &#8734; long"
+usecase bar as "this is also <U+221E> long"
+@enduml
+
+@startuml
+title: <size:20><&heart>Use of OpenIconic<&heart></size>
+class Wifi
+note left
+  Click on <&wifi>
+end note
+@enduml
+
+@startuml
+listopeniconic
+@enduml
+
+@startuml
+sprite $foo1 {
+  FFFFFFFFFFFFFFF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  FFFFFFFFFFFFFFF
+}
+Alice -> Bob : Testing <$foo1>
+@enduml
+
+@startuml
+sprite $foo1 {
+  FFFFFFFFFFFFFFF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  F0123456789ABCF
+  FFFFFFFFFFFFFFF
+}
+Alice -> Bob : Testing <$foo1{scale=3}>
+@enduml
+
+@startuml
+sprite $printer [15x15/8z] NOtH3W0W208HxFz_kMAhj7lHWpa1XC716sz0Pq4MVPEWfBHIuxP3L6kbTcizR8tAhzaqFvXwvFf
+start
+:click on <$printer> to print the page;
+@enduml
+
+@startuml
+sprite $bug [15x15/16z] PKzR2i0m2BFMi15p__FEjQEqB1z27aeqCqixa8S4OT7C53cKpsHpaYPDJY_12MHM-BLRyywPhrrlw sprite $printer [15x15/8z] NOtH3W0W208HxFz_kMAhj7lHWpa1XC716sz0Pq4MVPEWfBHIuxP3L6kbTcizR8tAhzaqFvXwvF
+ sprite $disk {
+   444445566677881
+   436000000009991
+   43600000000ACA1
+   53700000001A7A1
+   53700000012B8A1
+   53800000123B8A1
+   63800001233C9A1
+   634999AABBC99B1
+   744566778899AB1
+   7456AAAAA99AAB1
+   8566AFC228AABB1
+   8567AC8118BBBB1
+   867BD4433BBBBB1
+   39AAAAABBBBBBC1
+}
+ title Use of sprites (<$printer>, <$bug>...)
+ class Example {
+ Can have some bug : <$bug>
+ Click on <$disk> to save
+ }
+  note left : The printer <$printer> is available
+@enduml
+
+@startuml
+skinparam monochrome true
+actor User
+participant "First Class" as A
+participant "Second Class" as B
+participant "Last Class" as C
+User -> A: DoWork
+activate A
+A -> B: Create Request
+activate B
+B -> C: DoWork
+activate C
+C --> B: WorkDone
+destroy C
+B --> A: Request Created
+deactivate B
+A --> User: Done
+deactivate A
+@enduml
+
+@startuml
+skinparam monochrome reverse
+actor User
+participant "First Class" as A
+participant "Second Class" as B
+participant "Last Class" as C
+User -> A: DoWork
+activate A
+A -> B: Create Request
+activate B
+B -> C: DoWork
+activate C
+C --> B: WorkDone
+destroy C
+B --> A: Request Created
+deactivate B
+A --> User: Done
+deactivate A
+@enduml
+
+@startuml
+skinparam sequenceMessageAlign center
+Alice -> Bob : Hi
+Alice -> Bob : This is very long
+@enduml
+
+@startuml
+skinparam backgroundColor #EEEBDC
+skinparam handwritten true
+skinparam sequence {
+ArrowColor DeepSkyBlue
+ActorBorderColor DeepSkyBlue
+LifeLineBorderColor blue
+LifeLineBackgroundColor #A9DCDF
+ParticipantBorderColor DeepSkyBlue
+ParticipantBackgroundColor DodgerBlue
+ParticipantFontName Impact
+ParticipantFontSize 17
+ParticipantFontColor #A9DCDF
+ActorBackgroundColor aqua
+ActorFontColor DeepSkyBlue
+ActorFontSize 17
+ActorFontName Aapex
+}
+actor User
+participant "First Class" as A
+participant "Second Class" as B
+participant "Last Class" as C
+User -> A: DoWork
+activate A
+A -> B: Create Request
+activate B
+B -> C: DoWork
+activate C
+C --> B: WorkDone
+destroy C
+B --> A: Request Created
+deactivate B
+A --> User: Done
+deactivate A
+@enduml
+
+@startuml
+skinparam handwritten true
+skinparam actor {
+BorderColor black
+FontName Courier
+    BackgroundColor<< Human >> Gold
+}
+skinparam usecase {
+BackgroundColor DarkSeaGreen
+BorderColor DarkSlateGray
+BackgroundColor<< Main >> YellowGreen
+BorderColor<< Main >> YellowGreen
+ArrowColor Olive
+}
+User << Human >>
+:Main Database: as MySql << Application >>
+(Start) << One Shot >>
+(Use the application) as (Use) << Main >>
+User -> (Start)
+User --> (Use)
+MySql --> (Use)
+@enduml
+
+@startuml
+skinparam roundcorner 20
+skinparam class {
+BackgroundColor PaleGreen
+ArrowColor SeaGreen
+BorderColor SpringGreen
+}
+skinparam stereotypeCBackgroundColor YellowGreen
+Class01 "1" *-- "many" Class02 : contains
+Class03 o-- Class04 : aggregation
+@enduml
+
+@startuml
+skinparam interface {
+  backgroundColor RosyBrown
+  borderColor orange
+}
+skinparam component {
+  FontSize 13
+  BackgroundColor<<Apache>> Red
+  BorderColor<<Apache>> #FF6655
+  FontName Courier
+  BorderColor black
+  BackgroundColor gold
+  ArrowFontName Impact
+  ArrowColor #FF6655
+  ArrowFontColor #777777
+}
+() "Data Access" as DA
+DA - [First Component]
+[First Component] ..> () HTTP : use
+HTTP - [Web Server] << Apache >>
+@enduml
+
+@startuml
+[AA] <<static lib>>
+[BB] <<shared lib>>
+[CC] <<static lib>>
+node node1
+node node2 <<shared node>>
+database Production
+skinparam component {
+backgroundColor<<static lib>> DarkKhaki
+backgroundColor<<shared lib>> Green
+}
+skinparam node {
+borderColor Green
+backgroundColor Yellow
+backgroundColor<<shared node>> Magenta
+}
+skinparam databaseBackgroundColor Aqua
+@enduml
+
+@startuml
+!include /Users/kazuharu/Development/Docs/PlantUML_Doc/List.iuml
+List <|.. ArrayList
+@enduml
+
+@startuml
+!define SEQUENCE (S,#AAAAAA) Database Sequence
+!define TABLE (T,#FFAAAA) Database Table
+class USER << TABLE >>
+class ACCOUNT << TABLE >>
+class UID << SEQUENCE >>
+USER "1" -- "*" ACCOUNT
+USER -> UID
+@enduml
+
+@startuml
+!define module(x) component x <<module>>
+module(ABC)
+module(XYZ)
+@enduml
+
+@startuml
+!define send(a,b,c) a->b : c
+send(Alice, Bob, Hello)
+send(Bob, Alice, ok)
+@enduml
+
+@startuml
+!define ANOTHER_DATE %date[yyyy.MM.dd 'at' HH:mm]%
+Title Generated %date% or ANOTHER_DATE
+alice -> bob
+@enduml
+
+@startuml
+!define DOUBLE(x) x x
+!definelong AUTHEN(x,y)
+x -> y : DOUBLE(hello)
+y -> x : ok
+!enddefinelong
+AUTHEN(Bob,Alice)
+@enduml
+
+@startuml
+!define some_macro(x, y = "some default" , z = 'another default' ) x and y and z
+class foo {
+  some_macro(Z1, Z2, Z3)
+  some_macro(Z1, Z2)
+  some_macro(A)
+}
+@enduml
+
+@startuml
+!include /Users/kazuharu/Development/Docs/PlantUML_Doc/ArrayList.iuml
+@enduml
+
+@startuml
+!define SHOW_METHODS
+!include /Users/kazuharu/Development/Docs/PlantUML_Doc/ArrayList.iuml
+@enduml
+
+@startuml
+!define SHOW_FIELDS
+!undef SHOW_METHODS
+class foo {
+    !ifdef SHOW_FIELDS || SHOW_METHODS
+    This is shown
+    !endif
+    !ifdef SHOW_FIELDS && SHOW_METHODS
+    This is NOT shown
+    !endif
+}
+@enduml
+
+@startuml
+!definelong COMP_TEXTGENCOMP(name)
+[name] << Comp >>
+interface Ifc << IfcType >> AS name##Ifc
+name##Ifc - [name]
+!enddefinelong
+COMP_TEXTGENCOMP(dummy)
+@enduml
+
+@startuml
+!define DOUBLE(x) x x
+!definelong AUTHEN(x,y)
+x -> y : DOUBLE(hello)
+y -> x : ok
+!enddefinelong
+AUTHEN(Bob,Alice)
+@enduml
+
+@startuml
+!define module(x) component x <<module>>
+!define module(x,y) component x as y <<module>>
+module(foo)
+module(bar, barcode)
+@enduml
+
+@startuml
+skinparam handwritten true
+skinparam backgroundColor #EEEBDC
+actor 使用者
+participant "頭等艙" as A 
+participant "第二類" as B 
+participant "最後一堂課" as 別的東西
+使用者 -> A: 完成這項工作 
+activate A
+A -> B: 創建請求 
+activate B
+B -> 別的東西: 創建請求 
+activate 別的東西
+別的東西 --> B: 這項工作完成 
+destroy 別的東西
+B --> A: 請求創建 
+deactivate B
+A --> 使用者: 做完 
+deactivate A 
+@enduml
+
+@startuml
+(*) --> "膩平台" 
+--> === S1 ===
+--> 鞠躬向公眾 
+--> === S2 === 
+--> 這傢伙波武器 
+--> (*)
+skinparam backgroundColor #AAFFFF
+skinparam activityStartColor red
+skinparam activityBarColor SaddleBrown
+skinparam activityEndColor Silver
+skinparam activityBackgroundColor Peru
+skinparam activityBorderColor Peru
+@enduml
+
+@startuml
+skinparam usecaseBackgroundColor DarkSeaGreen
+skinparam usecaseArrowColor Olive
+skinparam actorBorderColor black
+skinparam usecaseBorderColor DarkSlateGray
+使用者 << 人類 >>
+"主數據庫" as 數據庫 << 應用程式 >> 
+(草創) << 一桿 >>
+"主数据燕" as (贏余) << 基本的 >>
+使用者 -> (草創) 
+使用者 --> (贏余)
+數據庫 -->(贏余)
+@enduml
+
+@startuml
+() "Σωκράτηςψεύτης" as Σωκράτης
+Σωκράτης - [Πτηνά πολεμοχαρής]
+[Πτηνά πολεμοχαρής] ..> () Αθήνα : Αυτές οι φράσειςσημαίνουν τίποτα 
+@enduml
+
+@startuml
+!define AWSPUML https://raw.githubusercontent.com/milo-minderbinder/AWS-PlantUML/release/18-2-22/dist
+!includeurl AWSPUML/common.puml
+!includeurl AWSPUML/Storage/AmazonS3/AmazonS3.puml
+!includeurl AWSPUML/Storage/AmazonS3/bucket/bucket.puml
+AMAZONS3(s3_internal)
+AMAZONS3(s3_partner,"Vendor's S3")
+s3_internal <-- s3_partner
+@enduml
+
+@startuml
+!define AzurePuml https://raw.githubusercontent.com/RicardoNiepel/Azure-PlantUML/release/2-1/dist
+!includeurl AzurePuml/AzureCommon.puml
+!includeurl AzurePuml/Databases/all.puml
+!includeurl AzurePuml/Compute/AzureFunction.puml
+
+actor "Person" as personAlias
+AzureFunction(functionAlias, "Label", "Technology", "Optional Description")
+AzureCosmosDb(cosmosDbAlias, "Label", "Technology", "Optional Description")
+
+personAlias --> functionAlias
+functionAlias --> cosmosDbAlias
+@enduml
+
+@startuml
+
+!define SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v1.0/sprites
+!includeurl SPRITESURL/tomcat.puml
+!includeurl SPRITESURL/kafka.puml
+!includeurl SPRITESURL/java.puml
+!includeurl SPRITESURL/cassandra.puml
+
+title Cloudinsight sprites example
+
+skinparam monochrome true
+
+rectangle "<$tomcat>\nwebapp" as webapp
+queue "<$kafka>" as kafka
+rectangle "<$java>\ndaemon" as daemon
+database "<$cassandra>" as cassandra
+
+webapp -> kafka
+kafka -> daemon
+daemon --> cassandra 
+
+@enduml
+
+@startuml
+
+skinparam defaultTextAlignment center
+
+!define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.0.0
+
+!includeurl ICONURL/common.puml
+!includeurl ICONURL/devicons/mysql.puml
+!includeurl ICONURL/font-awesome/server.puml
+!includeurl ICONURL/font-awesome-5/database.puml
+
+title Styling example
+
+FA_SERVER(web1,WEB1) #Green
+FA_SERVER(web2,WEB1) #Yellow
+FA_SERVER(web3,WEB1) #Blue
+FA_SERVER(web4,WEB1) #YellowGreen
+
+FA5_DATABASE(db1,LIVE,database,white) #RoyalBlue
+DEV_MYSQL(db2,SPARE,database) #Red
+
+db1 <--> db2
+
+web1 <--> db1
+web2 <--> db1
+web3 <--> db1
+web4 <--> db1
+
+@enduml

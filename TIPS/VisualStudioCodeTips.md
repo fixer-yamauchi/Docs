@@ -16,5 +16,9 @@
   
   offにすることで、文末の入力で候補がエンターで入力されてしまうのを防ぐ
 
+- Copy With Syntax Highlighting
+  
+  offにすることで、書式なしでコピーする
+
 
 
